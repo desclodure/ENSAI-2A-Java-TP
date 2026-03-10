@@ -45,18 +45,37 @@ public class Library {
      * Displays all the items that are currently available in the library
      */
     public void displayItems() {
-        this.attribute2 += increment;
-    }
-    
-    /**
-     * Checks if attribute2 is odd.
-     *
-     * @return true if attribute2 is odd, false otherwise.
-     */
-    public boolean isAttribute2Odd() {
-        return attribute2 % 2 != 0;
+        System.out.println("\n**********************************************");
+        System.out.println("* All items                                  *");
+        System.out.println("**********************************************");
+        if (items.isEmpty()) {
+            System.out.println("The library is empty.");
+        } else {
+            for (Item item : items) {
+                System.out.println(item);
+            }
+        }
     }
 
+    /**
+     * Returns a list of books that are written by a specific author.
+     *
+     * @param author The author whose books are to be returned.
+     * @return A list of books written by the specific author.
+     */
+    public ArrayList<Book> getBooksByAuthor(Author author) {
+        ArrayList<Book> result = new ArrayList<>();
+        for (Item item : items) {
+            if (item instanceof Book) { // to check if the item is a Book
+                Book book = (Book) item; // to cast the item to a Book
+                if (book.getAuthor().equals(author)) {
+                    result.add(book);
+                }
+            }
+        }
+        return result;
+    }  
+    
 
     /**
      * Main method
